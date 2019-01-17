@@ -41,24 +41,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpHelpers", "HttpHelpers\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonHelpers", "JsonHelpers\JsonHelpers.csproj", "{3D609AA1-F721-4098-A253-F07D3B320481}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Packages", "Packages", "{D226E917-EF61-4DBE-B7FB-75D1A130694D}"
-	ProjectSection(SolutionItems) = preProject
-		Packages\DotNet.Log4Net.dll = Packages\DotNet.Log4Net.dll
-		Packages\GalaSoft.MvvmLight.dll = Packages\GalaSoft.MvvmLight.dll
-		Packages\GalaSoft.MvvmLight.Extras.dll = Packages\GalaSoft.MvvmLight.Extras.dll
-		Packages\GalaSoft.MvvmLight.Extras.xml = Packages\GalaSoft.MvvmLight.Extras.xml
-		Packages\GalaSoft.MvvmLight.Platform.dll = Packages\GalaSoft.MvvmLight.Platform.dll
-		Packages\GalaSoft.MvvmLight.Platform.xml = Packages\GalaSoft.MvvmLight.Platform.xml
-		Packages\GalaSoft.MvvmLight.xml = Packages\GalaSoft.MvvmLight.xml
-		Packages\log4net.config = Packages\log4net.config
-		Packages\log4net.dll = Packages\log4net.dll
-		Packages\Microsoft.Practices.ServiceLocation.dll = Packages\Microsoft.Practices.ServiceLocation.dll
-		Packages\Microsoft.Practices.ServiceLocation.xml = Packages\Microsoft.Practices.ServiceLocation.xml
-		Packages\Newtonsoft.Json.dll = Packages\Newtonsoft.Json.dll
-		Packages\System.Windows.Interactivity.dll = Packages\System.Windows.Interactivity.dll
-		Packages\System.Windows.Interactivity.xml = Packages\System.Windows.Interactivity.xml
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
