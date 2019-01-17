@@ -14,6 +14,23 @@
                 <Setter Property="FontSize" Value="16"/>
             </Style.Setters>
         </Style>
+        <Style x:Key="SimulateHyperlink" TargetType="{x:Type Run}">
+            <Setter Property="Foreground" Value="#0366D6"></Setter>
+            <Setter Property="TextBlock.TextDecorations" Value="{x:Null}"></Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Cursor" Value="Hand"></Setter>
+                    <!--在鼠标悬停显示下划线-->
+                    <Setter Property="TextBlock.TextDecorations">
+                        <Setter.Value>
+                            <TextDecorationCollection>
+                                <TextDecoration Location="Underline"/>
+                            </TextDecorationCollection>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </Page.Resources>
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <Grid Margin="50 30" HorizontalAlignment="Center">
@@ -48,11 +65,27 @@
             <Border Grid.ColumnSpan="2" Grid.Row="3"  BorderBrush="{DynamicResource RegionBorderBrh}" BorderThickness="0 0 0 2"/>
 
             <TextBlock Grid.Column="0" Grid.Row="4" Text="{DynamicResource About_SourceCode}"/>
-            <TextBlock Grid.Column="1" Grid.Row="4" Text="fengsenlin5293@163.com" Margin="10 5"/>
+            <TextBlock Grid.Column="1" Grid.Row="4" Margin="10 5" >
+                <Run MouseDown="Run_MouseDown" Style="{DynamicResource SimulateHyperlink}" 
+                     Text="[Github]"
+                     Tag="https://github.com/fengsenlin5293/StockMonitor"
+                     ToolTip="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Tag}"/>
+                
+                <!--不使用Hyperlink的原因有些网址跳转过去后会出现 "请求被中止: 未能创建 SSL/TLS 安全通道" 异常导致程序崩溃
+                经过验证,Hyperlink的点击跳转和Page、Frame有关
+                关于Hyperlink内部的机制有待深入研究-->
+                
+                <!--<Hyperlink NavigateUri="https://github.com/fengsenlin5293/StockMonitor" Click="Hyperlink_Click">fengsenlin5293/StockMonitor</Hyperlink>-->
+            </TextBlock>
             <Border Grid.ColumnSpan="2" Grid.Row="4"  BorderBrush="{DynamicResource RegionBorderBrh}" BorderThickness="0 0 0 2"/>
 
             <TextBlock Grid.Column="0" Grid.Row="5" Text="{DynamicResource About_Detail}"/>
-            <TextBlock Grid.Column="1" Grid.Row="5" Text="fengsenlin5293@163.com" Margin="10 5"/>
+            <TextBlock Grid.Column="1" Grid.Row="5" Margin="10 5">
+                <Run MouseDown="Run_MouseDown" Style="{DynamicResource SimulateHyperlink}" 
+                     Text="[简书]"                     
+                     Tag="https://www.jianshu.com/p/1711f1239a38"
+                     ToolTip="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Tag}"/>
+            </TextBlock>
             <Border Grid.ColumnSpan="2" Grid.Row="5"  BorderBrush="{DynamicResource RegionBorderBrh}" BorderThickness="0 0 0 2"/>
 
             <Grid Grid.ColumnSpan="2" Grid.Row="6">

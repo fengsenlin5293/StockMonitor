@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,6 +25,15 @@ namespace StockMonitor.Views
         public AboutPage()
         {
             InitializeComponent();
+        }
+
+
+        private void Run_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            var run = sender as Run;
+            if (run == null)
+                return;
+            var proscess = Process.Start(run.Tag.ToString());
         }
     }
 }
