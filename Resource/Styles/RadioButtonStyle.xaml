@@ -1,0 +1,101 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Resource.Styles">
+
+    <Style x:Key="MenuRadioButtonStyle" TargetType="{x:Type RadioButton}">
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="Opacity" Value="0.6"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RadioButton}"  >
+                    <Grid>
+                        <Border Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Background="Transparent"/>
+                        <Border x:Name="border" >
+                            <Grid Margin="0 15 0 0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Image x:Name="Part_Image" Source="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=RadioButton}, Path=DataContext.IconUri,Mode=TwoWay}" Width="50" Height="50"
+                                       IsHitTestVisible="True"/>
+                                <TextBlock Grid.Row="1" x:Name="txb" Text="{TemplateBinding Content}"
+                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                           FontFamily="Microsoft YaHei"
+                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                           IsHitTestVisible="True"
+                                           Foreground="{TemplateBinding Foreground}" Margin="0,3" />
+                                <Rectangle Grid.Row="2" x:Name="rect" Height="4" Fill="{DynamicResource MenuCheckedRectangleBrh}" Visibility="Hidden"/>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"  Value="True" >
+                            <Setter Property="Opacity" Value="0.8" />
+                            <Setter Property="Foreground" Value="White" />
+                            <Setter Property="Cursor" Value="Hand" />
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="border" Property="Background"
+                                    Value="{DynamicResource MenuCheckedBackgroundBrh}" />
+                            <Setter Property="Foreground" Value="White" />
+                            <Setter TargetName="rect" Property="Visibility" Value="Visible" />
+                            <Setter Property="Opacity" Value="1" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <SolidColorBrush x:Key="RadioButton.CheckedBrush" Color="#32CD32"/>
+    <SolidColorBrush x:Key="RadioButton.MouseOverBrush" Color="#818181"/>
+    <SolidColorBrush x:Key="RadioButton.NormalBorderBrush" Color="#FFCCCCCC"/>
+    <Style x:Key="DefaultRadioButtonStyle" TargetType="{x:Type RadioButton}">
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource RadioButton.NormalBorderBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}"/>
+        <Setter Property="FontSize" Value="{DynamicResource DefaultFontSize}"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="6,0,0,0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RadioButton}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition x:Name="LeftCol" Width="18"/>
+                            <ColumnDefinition x:Name="RightCol" Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid x:Name="PART_CHECKBOX">
+                            <Rectangle Fill="Transparent" Margin="-6,0"/>
+                            <Ellipse x:Name="normal" Fill="{TemplateBinding Background}" Height="18" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="{TemplateBinding BorderThickness}" Width="18"/>
+                            <Ellipse x:Name="Checked1" Fill="Transparent" Height="10" Width="10"/>
+                        </Grid>
+                        <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Grid.Column="1" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Stroke" TargetName="normal" Value="{DynamicResource RadioButton.MouseOverBrush}"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Stroke" TargetName="normal" Value="{DynamicResource RadioButton.CheckedBrush}"/>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Fill" TargetName="Checked1" Value="{DynamicResource RadioButton.CheckedBrush}"/>
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="Stroke" TargetName="normal" Value="{DynamicResource RadioButton.CheckedBrush}"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value="0.5"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

@@ -1,0 +1,62 @@
+﻿<Window x:Class="StockMonitor.Shell"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:local="clr-namespace:StockMonitor"
+        xmlns:views="clr-namespace:StockMonitor.Views"
+        mc:Ignorable="d"
+        x:Name="ShellName"
+        Height="450" Width="800"
+        WindowStartupLocation="CenterScreen" AllowsTransparency="False" WindowStyle="None" ResizeMode="NoResize" WindowState="Normal"
+        DataContext="{Binding Path=ShellViewModel,Source={StaticResource Locator}}">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding ShellLoadCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Border BorderBrush="DarkGray" BorderThickness="1">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="90"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Background="{DynamicResource MenuNormalBackgroundBrh}"
+                      MouseLeftButtonDown="Grid_MouseLeftButtonDown">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Image Source="pack://application:,,,/Resource;component/Images/Logo1.png" Margin="10"/>
+
+                <views:MenuView Grid.Column="1" HorizontalAlignment="Center"/>
+
+                <StackPanel Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Top"
+                                Orientation="Horizontal">
+                    <Button Style="{DynamicResource MinButtonStyle}" ToolTip="{DynamicResource MinToolTip}" Command="{Binding MinCommand}" />
+                    <ToggleButton x:Name="maxRestoreBtn" Style="{DynamicResource MaxOrRestoreButton}" IsChecked="False">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Checked">
+                                <i:InvokeCommandAction Command="{Binding MaxCommand}"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="Unchecked">
+                                <i:InvokeCommandAction Command="{Binding NormalCommand}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </ToggleButton>
+                    <Button Style="{DynamicResource CloseButton}" ToolTip="{DynamicResource CloseTooltip}"
+                                Command="{Binding CloseCommand}" />
+                </StackPanel>
+            </Grid>
+
+            <Frame x:Name="MainFrame" Grid.Row="1" NavigationUIVisibility="Hidden" Background="{DynamicResource MainFrameBackgroundBrh}">
+            </Frame>
+
+            <views:StatusBarVeiw Grid.Row="2" Background="{DynamicResource StatusBarBackgroundBrh}" Height="25"/>
+        </Grid>
+    </Border>
+</Window>

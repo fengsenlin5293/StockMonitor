@@ -1,0 +1,90 @@
+﻿<Page x:Class="StockMonitor.Views.MonitorPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+      xmlns:local="clr-namespace:StockMonitor.Views"
+      xmlns:controls="clr-namespace:StockMonitor.Behaviors"
+      xmlns:stockMonitorControls="clr-namespace:StockMonitor.Controls;assembly=StockMonitor.Controls"
+      xmlns:converters="clr-namespace:StockMonitor.Converters"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MonitorPage"
+      DataContext="{Binding Path=MonitorViewModel,Source={StaticResource Locator}}">
+    <Page.Resources>
+        <converters:BoolVisibilityConverter x:Key="BoolVisibilityConverterKey" IsTrueToVisible="True"/>
+        <converters:BoolVisibilityConverter x:Key="BoolCollapsedConverterKey" IsTrueToVisible="False"/>
+    </Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Row="1" Grid.Column="0" x:Name="StartButton" Command="{Binding StartCommand}" Style="{DynamicResource StartButton}"
+                        ToolTip="{DynamicResource Monitor_Start}" HorizontalAlignment="Center"
+                        Visibility="{Binding IsRunning,Converter={StaticResource BoolCollapsedConverterKey}}"
+                        IsEnabled="{Binding CanStart,UpdateSourceTrigger=PropertyChanged}"/>
+                <Button Grid.Row="1" Grid.Column="0" x:Name="PauseButton" Style="{DynamicResource PauseButton}"     
+                        ToolTip="{DynamicResource Monitor_Pause}"
+                        IsEnabled="{Binding CanStart,UpdateSourceTrigger=PropertyChanged}" 
+                        Visibility="{Binding IsRunning,Converter={StaticResource BoolVisibilityConverterKey}}"/>
+                <Button Grid.Row="1" Grid.Column="2"  x:Name="StopButton" Command="{Binding StopCommand}" Style="{DynamicResource StopButton}" Margin="10 0"
+                        ToolTip="{DynamicResource Monitor_Stop}" HorizontalAlignment="Center"
+                        IsEnabled="{Binding CanStop,UpdateSourceTrigger=PropertyChanged}"/>
+            </Grid>
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Grid.RowSpan="2" VerticalAlignment="Center" >
+                    <Run Text="{DynamicResource Monitor_MonitoringStockCount}"/>
+                    <Run Text="{Binding MonitoringStockCount,UpdateSourceTrigger=PropertyChanged}"/>
+                </TextBlock>
+                <TextBlock Grid.Column="1" Grid.RowSpan="2" VerticalAlignment="Center" >
+                    <Run Text="{DynamicResource Monitor_CrawlerDealCount}"/>
+                    <Run Text="{Binding TotalCrawledCount,UpdateSourceTrigger=PropertyChanged}"/>
+                </TextBlock>
+                <TextBlock Grid.Column="2" Grid.Row="0" VerticalAlignment="Center">
+                    <Run Text="{DynamicResource Monitor_BigDealStrategyNeedProcessed}"/>
+                    <Run Text="{Binding BigDealRemainCount,UpdateSourceTrigger=PropertyChanged}"/>
+                </TextBlock>
+
+                <TextBlock Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" Margin="0 5 0 0">
+                    <Run Text="{DynamicResource Monitor_QuickUpStrategyNeedProcessed}"/>
+                    <Run Text="{Binding QuickRemainCount,UpdateSourceTrigger=PropertyChanged}"/>
+                </TextBlock>
+            </Grid>
+        </Grid>
+
+        <DataGrid  Grid.Row="1" ItemsSource="{Binding PageStockModels,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Style="{DynamicResource DefaultDataGrid}" Sorting="DataGrid_Sorting" >
+            <i:Interaction.Behaviors>
+                <controls:DataGridColAutoBehavior />
+            </i:Interaction.Behaviors>
+        </DataGrid>
+
+        <stockMonitorControls:DataPager Grid.Row="2" Height="40" MaxCenterPageCount="9" Foreground="White"
+                         CurrentPageIndex="{Binding CurrentPageIndex,Mode=OneWayToSource,UpdateSourceTrigger=PropertyChanged}" 
+                         TotalCount="{Binding StockModels.Count,UpdateSourceTrigger=PropertyChanged}" 
+                         PageSize="{Binding PageSize,Mode=OneTime}" />
+    </Grid>
+</Page>

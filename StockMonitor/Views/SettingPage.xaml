@@ -1,0 +1,325 @@
+﻿<Page x:Class="StockMonitor.Views.SettingPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:StockMonitor.Views"
+      xmlns:converters="clr-namespace:StockMonitor.Converters"
+      mc:Ignorable="d" 
+      d:DesignHeight="900" d:DesignWidth="800"
+      Title="SettingPage"
+      DataContext="{Binding Path=SettingViewModel,Source={StaticResource Locator}}">
+    <Page.Resources>
+        <converters:BoolExchangeConverter x:Key="BoolExchangeConverterKey"/>
+        <converters:BoolImageConverter x:Key="BoolImageConverterKey"/>
+    </Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Expander Style="{DynamicResource NormalExpanderStyle}" Grid.Row="0" Margin="20 10" IsExpanded="True">
+                    <Expander.Header>
+                        <TextBlock Text="{DynamicResource Setting_BasicSettingsHeader}" Style="{DynamicResource TitleTextBlockStyle}"/>
+                    </Expander.Header>
+                    <Border BorderBrush="DarkGray" BorderThickness="0 2" Margin="0 10">
+                        <Grid >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <GroupBox Grid.Row="1" Style="{DynamicResource ContentPresenterHeaderGroupBoxStyle}" Margin="0 10 0 0">
+                                <GroupBox.Header>
+                                    <CheckBox Content="{DynamicResource Setting_ProxyHeader}" IsChecked="{Binding IsUseProxy}"
+                                              Style="{DynamicResource DefaultCheckboxStyle}"/>
+                                </GroupBox.Header>
+                                <StackPanel Orientation="Horizontal" Margin="10" IsEnabled="{Binding IsUseProxy,UpdateSourceTrigger=PropertyChanged}">
+                                    <TextBlock Text="{DynamicResource Setting_IP}" VerticalAlignment="Center" Margin="0 0 10 0"/>
+                                    <TextBox VerticalContentAlignment="Center" Text="{Binding IPString,UpdateSourceTrigger=PropertyChanged}" Width="120"/>
+                                    <TextBlock Text="{DynamicResource Setting_Port}" Margin="10 0" VerticalAlignment="Center"/>
+                                    <TextBox VerticalContentAlignment="Center" Text="{Binding Port,UpdateSourceTrigger=PropertyChanged}" Width="50"/>
+                                    <Button Content="{DynamicResource Setting_CheckProxyUseful}" Command="{Binding CheckProxyUsefulCommand}" Width="80" Margin="10 0" Style="{DynamicResource NomalButton}"/>
+                                    <Image Width="15" Height="15" Source="{Binding IsProxyUsefull,Converter={StaticResource BoolImageConverterKey}}" VerticalAlignment="Center"/>
+                                    <TextBlock Margin="10 0" VerticalAlignment="Center">
+                                        <Run Text="{Binding DelayMessage}"/>
+                                    </TextBlock>
+                                </StackPanel>
+                            </GroupBox>
+
+                            <GroupBox Grid.Row="2" Header="{DynamicResource Setting_MonitorRangeHeader}" Style="{DynamicResource DefaultGroupBoxStyle}" Margin="0 20">
+                                <StackPanel Margin="20">
+                                    <GroupBox Padding="0 5 0 0" Style="{DynamicResource NormalGroupBoxStyle}">
+                                        <GroupBox.Header>
+                                            <RadioButton GroupName="StockMonitor.Views.SettingPage" Content="{DynamicResource Setting_FromConditionFilter}"
+                                                         IsChecked="{Binding IsFromConditionFilter,UpdateSourceTrigger=PropertyChanged}"
+                                                         Style="{DynamicResource DefaultRadioButtonStyle}"/>
+                                        </GroupBox.Header>
+                                        <StackPanel IsEnabled="{Binding IsFromConditionFilter,UpdateSourceTrigger=PropertyChanged}">
+                                            <Border BorderBrush="{DynamicResource RegionBorderBrh}" BorderThickness="0 0 0 1" Margin="10 5">
+                                                <StackPanel Orientation="Horizontal" Margin="0 5">
+                                                    <CheckBox VerticalAlignment="Center" VerticalContentAlignment="Center" Content="{DynamicResource Setting_ConditionFilter_Price}" 
+                                                              IsChecked="{Binding IsFilterPrice,UpdateSourceTrigger=PropertyChanged}"
+                                                              Style="{DynamicResource DefaultCheckboxStyle}" Margin="5 0"/>
+                                                    <TextBox VerticalContentAlignment="Center" Text="{Binding PriceSmall,UpdateSourceTrigger=PropertyChanged}" Width="80"/>
+                                                    <TextBlock Text="~"/>
+                                                    <TextBox VerticalContentAlignment="Center" Text="{Binding PriceMax,UpdateSourceTrigger=PropertyChanged}" Width="80"/>
+                                                    <TextBlock Text="{DynamicResource Setting_Unit_Yuan}" VerticalAlignment="Center"/>
+                                                </StackPanel>
+                                            </Border>
+                                            <Border BorderBrush="{DynamicResource RegionBorderBrh}" BorderThickness="0 0 0 1" Margin="10 5">
+                                                <StackPanel Orientation="Horizontal" Margin="0 5">
+                                                    <CheckBox VerticalAlignment="Center" VerticalContentAlignment="Center" Content="{DynamicResource Setting_ConditionFilter_FlowValue}" 
+                                                              IsChecked="{Binding IsFilterFlowValue,UpdateSourceTrigger=PropertyChanged}"
+                                                              Style="{DynamicResource DefaultCheckboxStyle}" Margin="5 0"/>
+                                                    <TextBox VerticalContentAlignment="Center" Text="{Binding FlowValueSmall,UpdateSourceTrigger=PropertyChanged}" Width="80"/>
+                                                    <TextBlock Text="~"/>
+                                                    <TextBox VerticalContentAlignment="Center" Text="{Binding FlowValueMax,UpdateSourceTrigger=PropertyChanged}" Width="80"/>
+                                                    <TextBlock Text="{DynamicResource Setting_Unit_YiYuan}" VerticalAlignment="Center"/>
+                                                </StackPanel>
+                                            </Border>
+                                            <Border BorderBrush="{DynamicResource RegionBorderBrh}" BorderThickness="1" Margin="10 5">
+                                                <StackPanel Margin="0 5">
+                                                    <StackPanel Orientation="Horizontal" Margin="0 0 0 5">
+                                                        <CheckBox VerticalAlignment="Center" VerticalContentAlignment="Center" Content="{DynamicResource Setting_ConditionFilter_Topic}" 
+                                                                  IsChecked="{Binding IsFilterTopic,UpdateSourceTrigger=PropertyChanged}"
+                                                                  Style="{DynamicResource DefaultCheckboxStyle}" Margin="5 0"/>
+                                                        <RadioButton GroupName="logicgroup" Style="{DynamicResource DefaultRadioButtonStyle}" Content="{DynamicResource Setting_ConditionFilter_TopicLogicAnd }" IsChecked="{Binding IsLogicAnd,UpdateSourceTrigger=PropertyChanged}"/>
+                                                        <RadioButton GroupName="logicgroup" Style="{DynamicResource DefaultRadioButtonStyle}" Content="{DynamicResource Setting_ConditionFilter_TopicLogicOr}" IsChecked="{Binding IsLogicAnd,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolExchangeConverterKey}}"/>
+                                                        <TextBlock Text="{DynamicResource Setting_ConditionFilter_TopicDesc}" VerticalAlignment="Center" Margin="50 0" />
+                                                    </StackPanel>
+                                                    <TextBox HorizontalAlignment="Stretch" Width="NaN" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" Text="{Binding FilterTopicText,UpdateSourceTrigger=PropertyChanged}" Margin="5 0" Height="60" VerticalScrollBarVisibility="Auto" TextWrapping="WrapWithOverflow"/>
+                                                </StackPanel>
+                                            </Border>
+                                        </StackPanel>
+                                    </GroupBox>
+
+                                    <GroupBox Margin="0 20 0 0" Padding="0 5 0 0" Style="{DynamicResource NormalGroupBoxStyle}">
+                                        <GroupBox.Header>
+                                            <RadioButton GroupName="StockMonitor.Views.SettingPage" Content="{DynamicResource Setting_FromLocalFile}"
+                                                         IsChecked="{Binding IsFromLocalFile,UpdateSourceTrigger=PropertyChanged}"
+                                                         Style="{DynamicResource DefaultRadioButtonStyle}"/>
+                                        </GroupBox.Header>
+                                        <StackPanel Orientation="Horizontal" Margin="10" IsEnabled="{Binding IsFromLocalFile,UpdateSourceTrigger=PropertyChanged}">
+                                            <TextBlock Text="{DynamicResource Setting_MonitorFilePath}"/>
+                                            <TextBox Text="{Binding MonitorFilePath,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" 
+                                                     Style="{DynamicResource FilePathTextBoxStyle}"
+                                                     Margin="10 0"/>
+                                            <Button Content="{DynamicResource Setting_ChooseFile}" Command="{Binding ChooseFromLocalFileCommand}" Width="80" Style="{DynamicResource NomalButton}"/>
+                                        </StackPanel>
+                                    </GroupBox>
+                                </StackPanel>
+                            </GroupBox>
+
+                            <GroupBox Grid.Row="3" Style="{DynamicResource ContentPresenterHeaderGroupBoxStyle}">
+                                <GroupBox.Header>
+                                    <CheckBox Content="{DynamicResource Setting_ExceptMonitorRangeHeader}" IsChecked="{Binding IsExceptMonitorRange,UpdateSourceTrigger=PropertyChanged}"
+                                              Style="{DynamicResource DefaultCheckboxStyle}"/>
+                                </GroupBox.Header>
+                                <StackPanel Orientation="Horizontal" Margin="10" IsEnabled="{Binding IsExceptMonitorRange,UpdateSourceTrigger=PropertyChanged}">
+                                    <TextBlock Text="{DynamicResource Setting_MonitorFilePath}"/>
+                                    <TextBox Text="{Binding ExceptMonitorFilePath,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" 
+                                             Style="{DynamicResource FilePathTextBoxStyle}"
+                                             Margin="10 0"/>
+                                    <Button Content="{DynamicResource Setting_ChooseFile}" Command="{Binding ChooseExceptFileCommand}" Width="80" Style="{DynamicResource NomalButton}"/>
+                                </StackPanel>
+                            </GroupBox>
+
+                            <GroupBox Grid.Row="4" Header="{DynamicResource Setting_MonitorStrategyHeader}" Style="{DynamicResource DefaultGroupBoxStyle}" Margin="0 20">
+                                <StackPanel Orientation="Horizontal" Margin="10">
+                                    <CheckBox Content="{DynamicResource Setting_BigOrderStrategy}" IsChecked="{Binding IsUseBigOrderStrategy,UpdateSourceTrigger=PropertyChanged}"
+                                              Style="{DynamicResource DefaultCheckboxStyle}"/>
+                                    <CheckBox Content="{DynamicResource Setting_RapidRiseStrategy}" IsChecked="{Binding IsUseRapidRiseStrategy,UpdateSourceTrigger=PropertyChanged}" Margin="10 0"
+                                              Style="{DynamicResource DefaultCheckboxStyle}"/>
+                                </StackPanel>
+                            </GroupBox>
+                        </Grid>
+                    </Border>
+                </Expander>
+
+                <!--高级设置-->
+                <Expander Style="{DynamicResource NormalExpanderStyle}" Grid.Row="1" Margin="20 10">
+                    <Expander.Header>
+                        <TextBlock Text="{DynamicResource Setting_AdvancedSettingsHeader}" Style="{DynamicResource TitleTextBlockStyle}"/>
+                    </Expander.Header>
+                    <Border BorderBrush="DarkGray" BorderThickness="0 2" Margin="0 10">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <GroupBox Grid.Row="0" Header="{DynamicResource Setting_CrawlerSettingHeader}" Style="{DynamicResource DefaultGroupBoxStyle}" Margin="0 10 0 20">
+                                <Grid Margin="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Row="0" Grid.Column="0" Text="{DynamicResource Setting_CrawlerSetting_CodeCountPerThread}"/>
+                                    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding ClawlerSettingData.CodeCountPerThread,UpdateSourceTrigger=PropertyChanged}" Margin="10 0"/>
+                                    <TextBlock Grid.Row="0" Grid.Column="2" Text="(100~300)"/>
+
+                                    <TextBlock Grid.Row="0" Grid.Column="4" Text="{DynamicResource Setting_CrawlerSetting_QueryCountPerTime}"/>
+                                    <TextBox Grid.Row="0" Grid.Column="5" Text="{Binding ClawlerSettingData.QueryCountPerTime,UpdateSourceTrigger=PropertyChanged}" Margin="10 0"/>
+                                    <TextBlock Grid.Row="0" Grid.Column="6" Text="(20~14400)"/>
+
+                                    <TextBlock Grid.Row="0" Grid.Column="8" Text="{DynamicResource Setting_CrawlerSetting_QueryInterval}"/>
+                                    <TextBox Grid.Row="0" Grid.Column="9" Text="{Binding ClawlerSettingData.QueryInterval,UpdateSourceTrigger=PropertyChanged}" Margin="10 0"/>
+                                    <TextBlock Grid.Row="0" Grid.Column="10" >
+                                        <Run Text="(>=3000)"/>
+                                        <Run Text="{DynamicResource Setting_Unit_MS}"/>
+                                    </TextBlock>
+                                </Grid>
+                            </GroupBox>
+
+                            <GroupBox Grid.Row="1" Header="{DynamicResource Setting_BigDealStrategySettingHeader}" Style="{DynamicResource DefaultGroupBoxStyle}">
+                                <Grid Margin="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="10"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Row="0" Grid.Column="0" Text="{DynamicResource Setting_StockMaxCountEachGroup}"/>
+                                    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding BigDealStrategySettingData.StockMaxCountEachGroup,UpdateSourceTrigger=PropertyChanged}" Margin="10 0"/>
+                                    <TextBlock Grid.Row="0" Grid.Column="2" Text="(100~500)"/>
+
+                                    <TextBlock Grid.Row="0" Grid.Column="4" Text="{DynamicResource Setting_ThreadCount}"/>
+                                    <TextBox Grid.Row="0" Grid.Column="5" Text="{Binding BigDealStrategySettingData.ThreadCount,UpdateSourceTrigger=PropertyChanged}" Margin="10 0"/>
+                                    <TextBlock Grid.Row="0" Grid.Column="6" Text="(1~10)"/>
+
+                                    <TextBlock Grid.Row="0" Grid.Column="8" Text="{DynamicResource Setting_ForwardSeconds}"/>
+                                    <TextBox Grid.Row="0" Grid.Column="9" Text="{Binding BigDealStrategySettingData.ForwardSeconds,UpdateSourceTrigger=PropertyChanged}" Margin="10 0"/>
+                                    <TextBlock Grid.Row="0" Grid.Column="10" >
+                                        <Run Text="(10~300)"/>
+                                        <Run Text="{DynamicResource Setting_Unit_S}"/>
+                                    </TextBlock>
+
+                                    <TextBlock Grid.Row="2" Grid.Column="0" Text="{DynamicResource Setting_AfterSeconds}"/>
+                                    <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding BigDealStrategySettingData.AfterSeconds,UpdateSourceTrigger=PropertyChanged}" Margin="10 0"/>
+                                    <TextBlock Grid.Row="2" Grid.Column="2" >
+                                         <Run Text="(0~60)"/>
+                                        <Run Text="{DynamicResource Setting_Unit_S}"/>
+                                    </TextBlock>
+
+                                    <TextBlock Grid.Row="2" Grid.Column="4" Text="{DynamicResource Setting_BigDealSetting_BigDealAmountThreshold}"/>
+                                    <TextBox Grid.Row="2" Grid.Column="5" Text="{Binding BigDealStrategySettingData.BigDealAmountThreshold,UpdateSourceTrigger=PropertyChanged}" Margin="10 0"/>
+                                    <TextBlock Grid.Row="2" Grid.Column="6" >
+                                        <Run Text="(>=100000)"/>
+                                        <Run Text="{DynamicResource Setting_Unit_Yuan}"/>
+                                    </TextBlock>
+
+                                    <TextBlock Grid.Row="2" Grid.Column="8" Text="{DynamicResource Setting_BigDealSetting_BigDealCountThreshold}"/>
+                                    <TextBox Grid.Row="2" Grid.Column="9" Text="{Binding BigDealStrategySettingData.BigDealCountThreshold,UpdateSourceTrigger=PropertyChanged}" Margin="10 0"/>
+                                    <TextBlock Grid.Row="2" Grid.Column="10" Text="(>=0)"/>
+                                </Grid>
+                            </GroupBox>
+
+                            <GroupBox Grid.Row="2" Header="{DynamicResource Setting_QuickUpStrategySettingHeader}" Style="{DynamicResource DefaultGroupBoxStyle}" Margin="0 20">
+                                <Grid Margin="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="10"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Row="0" Grid.Column="0" Text="{DynamicResource Setting_StockMaxCountEachGroup}"/>
+                                    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding QuickUpStrategySettingData.StockMaxCountEachGroup,UpdateSourceTrigger=PropertyChanged}" Margin="10 0"/>
+                                    <TextBlock Grid.Row="0" Grid.Column="2" Text="(100~500)"/>
+
+                                    <TextBlock Grid.Row="0" Grid.Column="4" Text="{DynamicResource Setting_ThreadCount}"/>
+                                    <TextBox Grid.Row="0" Grid.Column="5" Text="{Binding QuickUpStrategySettingData.ThreadCount,UpdateSourceTrigger=PropertyChanged}" Margin="10 0"/>
+                                    <TextBlock Grid.Row="0" Grid.Column="6" Text="(1~10)"/>
+
+                                    <TextBlock Grid.Row="0" Grid.Column="8" Text="{DynamicResource Setting_ForwardSeconds}"/>
+                                    <TextBox Grid.Row="0" Grid.Column="9" Text="{Binding QuickUpStrategySettingData.ForwardSeconds,UpdateSourceTrigger=PropertyChanged}" Margin="10 0"/>
+                                    <TextBlock Grid.Row="0" Grid.Column="10" >
+                                        <Run Text="(10~300)"/>
+                                        <Run Text="{DynamicResource Setting_Unit_S}"/>
+                                    </TextBlock>
+
+                                    <TextBlock Grid.Row="2" Grid.Column="0" Text="{DynamicResource Setting_AfterSeconds}"/>
+                                    <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding QuickUpStrategySettingData.AfterSeconds,UpdateSourceTrigger=PropertyChanged}" Margin="10 0"/>
+                                    <TextBlock Grid.Row="2" Grid.Column="2" >
+                                         <Run Text="(0~60)"/>
+                                        <Run Text="{DynamicResource Setting_Unit_S}"/>
+                                    </TextBlock>
+
+                                    <TextBlock Grid.Row="2" Grid.Column="4" Text="{DynamicResource Setting_QuickUpSetting_DealAmountThreshold}"/>
+                                    <TextBox Grid.Row="2" Grid.Column="5" Text="{Binding QuickUpStrategySettingData.DealAmountThreshold,UpdateSourceTrigger=PropertyChanged}" Margin="10 0"/>
+                                    <TextBlock Grid.Row="2" Grid.Column="6" >
+                                        <Run Text="(>=50000)"/>
+                                        <Run Text="{DynamicResource Setting_Unit_Yuan}"/>
+                                    </TextBlock>
+
+                                    <TextBlock Grid.Row="2" Grid.Column="8" Text="{DynamicResource Setting_QuickUpSetting_QuickUpThreshold}"/>
+                                    <TextBox Grid.Row="2" Grid.Column="9" Text="{Binding QuickUpStrategySettingData.QuickUpThreshold}" Margin="10 0"/>
+                                    <TextBlock Grid.Row="2" Grid.Column="10">
+                                        <Run Text="%"/>
+                                        <Run Text="(0.5~100)"/>
+                                    </TextBlock>
+                                </Grid>
+                            </GroupBox>
+                        </Grid>
+                    </Border>
+                </Expander>
+            </Grid>
+
+        </ScrollViewer>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="20 10">
+            <Button Content="{DynamicResource Setting_Save}" Command="{Binding SaveCommand}" 
+                    IsEnabled="{Binding CanSave}" Width="80" Style="{DynamicResource NomalButton}"/>
+            <Button Content="{DynamicResource Setting_Cancel}" Command="{Binding CancelCommand}"
+                    IsEnabled="{Binding CanCancel}" Width="80" Margin="10 0" Style="{DynamicResource NomalButton}"/>
+        </StackPanel>
+    </Grid>
+
+</Page>

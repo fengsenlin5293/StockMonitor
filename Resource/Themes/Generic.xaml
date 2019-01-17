@@ -1,0 +1,20 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Resource">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/Resource;component/Styles/CustomColorsAndFonts.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Resource;component/Styles/ButtonStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Resource;component/Styles/RadioButtonStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Resource;component/Styles/GroupBoxStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Resource;component/Styles/ScrollBarStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Resource;component/Styles/TextBlockStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Resource;component/Styles/ExpanderStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Resource;component/Styles/TextBoxStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Resource;component/Styles/CheckBoxStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Resource;component/Styles/ToolTipStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Resource;component/Styles/DataGridStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Resource;component/Styles/DataPagerStyle.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>

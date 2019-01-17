@@ -32,9 +32,36 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Monitor.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DotNet.Log4Net">
+      <HintPath>..\Packages\DotNet.Log4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight">
+      <HintPath>..\Packages\GalaSoft.MvvmLight.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Extras">
+      <HintPath>..\Packages\GalaSoft.MvvmLight.Extras.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Platform">
+      <HintPath>..\Packages\GalaSoft.MvvmLight.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\Packages\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\Packages\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\Packages\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Interactivity">
+      <HintPath>..\Packages\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -53,7 +80,45 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainWindow.xaml">
+    <Compile Include="Behaviors\DataGridColAutoBehavior.cs" />
+    <Compile Include="Controls\SyncStateUserControl.xaml.cs">
+      <DependentUpon>SyncStateUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SyncStateViewModel.cs" />
+    <Compile Include="Converters\BoolExchangeConverter.cs" />
+    <Compile Include="Converters\BoolImageConverter.cs" />
+    <Compile Include="Converters\BoolVisibilityConverter.cs" />
+    <Compile Include="ViewModelLocator.cs" />
+    <Compile Include="ViewModels\AboutViewModel.cs" />
+    <Compile Include="ViewModels\MenuViewModel.cs" />
+    <Compile Include="ViewModels\MonitorViewModel.cs" />
+    <Compile Include="ViewModels\SettingViewModel.cs" />
+    <Compile Include="ViewModels\ShellViewModel.cs" />
+    <Compile Include="ViewModels\StatusBarVeiwModel.cs" />
+    <Compile Include="ViewModels\SyncDataViewModel.cs" />
+    <Compile Include="Views\AboutPage.xaml.cs">
+      <DependentUpon>AboutPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MenuView.xaml.cs">
+      <DependentUpon>MenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MonitorPage.xaml.cs">
+      <DependentUpon>MonitorPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SettingPage.xaml.cs">
+      <DependentUpon>SettingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StatusBarVeiw.xaml.cs">
+      <DependentUpon>StatusBarVeiw.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SyncDataPage.xaml.cs">
+      <DependentUpon>SyncDataPage.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Controls\SyncStateUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Shell.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -61,10 +126,34 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="Shell.xaml.cs">
+      <DependentUpon>Shell.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\AboutPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MenuView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MonitorPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SettingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StatusBarVeiw.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SyncDataPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -84,6 +173,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="log4net.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -91,6 +183,67 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AnalysisStrategys\AnalysisStrategys.BigDealAnalysisStrategy\AnalysisStrategys.BigDealAnalysisStrategy.csproj">
+      <Project>{0592A977-7FED-45F7-84F4-B0105861703C}</Project>
+      <Name>AnalysisStrategys.BigDealAnalysisStrategy</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AnalysisStrategys\AnalysisStrategys.QuickUpAnalysisStrategy\AnalysisStrategys.QuickUpAnalysisStrategy.csproj">
+      <Project>{8F7BDBB5-0C9C-4439-AEB6-26D2A7D6B04F}</Project>
+      <Name>AnalysisStrategys.QuickUpAnalysisStrategy</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CommonHelpers\CommonHelpers.csproj">
+      <Project>{4F3BFEDC-4A9C-4A3E-90EC-0FC2D8078C67}</Project>
+      <Name>CommonHelpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HttpHelpers\HttpHelpers.csproj">
+      <Project>{C81F6A3F-C820-4D51-9BE5-D1F3762EF91F}</Project>
+      <Name>HttpHelpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Interfaces\ClawlerInterfaces\ClawlerInterfaces.csproj">
+      <Project>{6135E9E8-0D1F-4C9F-871B-C511F109E2A7}</Project>
+      <Name>ClawlerInterfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Interfaces\CommonInterfaces\CommonInterfaces.csproj">
+      <Project>{4F4626C2-297D-4164-BF6D-DA8FD2D586EB}</Project>
+      <Name>CommonInterfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JsonHelpers\JsonHelpers.csproj">
+      <Project>{3D609AA1-F721-4098-A253-F07D3B320481}</Project>
+      <Name>JsonHelpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <Project>{91A61516-80A1-42D1-8227-F3953005665E}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Resource\Resource.csproj">
+      <Project>{53c28946-db55-4609-bef6-244ecb33e709}</Project>
+      <Name>Resource</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Service\Service.csproj">
+      <Project>{283CE555-1DC4-4FA4-9111-977B2B4367E8}</Project>
+      <Name>Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StockAnalysisInterfaces\StockAnalysisInterfaces.csproj">
+      <Project>{DE1C1869-DFC7-4106-B57A-9B7409C6B023}</Project>
+      <Name>StockAnalysisInterfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StockHelpers\StockHelpers.csproj">
+      <Project>{D00A48FF-0294-472C-968C-46BDE8900B6E}</Project>
+      <Name>StockHelpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StockMonitor.Controls\StockMonitor.Controls.csproj">
+      <Project>{12e23802-13d7-40dd-b0e8-f43f2dd88cb5}</Project>
+      <Name>StockMonitor.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Structures\Structures.csproj">
+      <Project>{EA438A63-3BB7-44C0-8D6B-543E808B3312}</Project>
+      <Name>Structures</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Monitor.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

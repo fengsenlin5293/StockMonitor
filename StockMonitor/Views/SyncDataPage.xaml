@@ -1,0 +1,64 @@
+﻿<Page x:Class="StockMonitor.Views.SyncDataPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:StockMonitor.Views"
+      xmlns:converters="clr-namespace:StockMonitor.Converters"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="SyncDataPage"
+      DataContext="{Binding Path=SyncDataViewModel,Source={StaticResource Locator}}">
+    <Page.Resources>
+        <converters:BoolImageConverter x:Key="BoolImageConverterKey"/>
+    </Page.Resources>
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <GroupBox Grid.Row="0" Header="{DynamicResource SyncData_SyncRangeHeader}" Style="{DynamicResource DefaultGroupBoxStyle}">
+            <Grid Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0">
+                    <Border BorderThickness="0 0 0 1" BorderBrush="{DynamicResource RegionBorderBrh}" Margin="0 10">
+                        <Grid Margin="0 5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <CheckBox Grid.Column="0" Content="{DynamicResource SyncData_StockBasicData}" IsChecked="{Binding IsSyncStockBasicData}" VerticalContentAlignment="Center"
+                                      Style="{DynamicResource DefaultCheckboxStyle}"/>                            
+                            <TextBlock Grid.Column="1" Text="{Binding StockBasicDataSyncTime}" Margin="10 0"/>
+                            <Image Grid.Column="2" Width="15" Height="15" Source="{Binding IsSyncStockBasicDataSuccess,Converter={StaticResource BoolImageConverterKey}}" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Border>
+                    <Border BorderThickness="0 0 0 1" BorderBrush="{DynamicResource RegionBorderBrh}">
+                        <Grid Margin="0 5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <CheckBox Grid.Column="0" Content="{DynamicResource SyncData_TopicStockLinkData}" IsChecked="{Binding IsSyncTopicStockLinkData}" VerticalContentAlignment="Center"
+                                      Style="{DynamicResource DefaultCheckboxStyle}"/>
+                            <TextBlock Grid.Column="1" Text="{Binding TopicStockLinkDataSyncTime}" Margin="10 0"/>
+                            <Image Grid.Column="2" Width="15" Height="15" Source="{Binding IsSyncTopicStockLinkDataSuccess,Converter={StaticResource BoolImageConverterKey}}" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Border>
+                </StackPanel>
+                <Button Grid.Row="1" Content="{DynamicResource SyncData_StartSync}" Command="{Binding StartSyncDataCommand}"
+                        Style="{DynamicResource NomalButton}"
+                        IsEnabled="{Binding CanStartSyncData,UpdateSourceTrigger=PropertyChanged}"
+                        Width="80" HorizontalAlignment="Left" Margin="0 15 0 0"/>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</Page>

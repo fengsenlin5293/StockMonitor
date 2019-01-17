@@ -1,0 +1,256 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Resource.Styles"
+                    xmlns:controls="clr-namespace:StockMonitor.Controls;assembly=StockMonitor.Controls">
+    <Style TargetType="{x:Type controls:DataPager}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:DataPager}">
+                    <ControlTemplate.Resources>
+                        <SolidColorBrush x:Key="PageButton.Foreground">white</SolidColorBrush>
+                        <SolidColorBrush x:Key="PageButton.Background">#4788CB</SolidColorBrush>
+                        <SolidColorBrush x:Key="PageButton.Background.IsMouseOver">#00cc66</SolidColorBrush>
+                        <SolidColorBrush x:Key="TextBox.BorderBrush">#004059</SolidColorBrush>
+                        <SolidColorBrush x:Key="TextBox.CaretBrush">white</SolidColorBrush>
+                        <SolidColorBrush x:Key="RadioButton.Rectangle.Fill">#FF9C1D85</SolidColorBrush>
+
+                        <Style x:Key="PageButtonBaseStyle" TargetType="{x:Type Button}">
+                            <Setter Property="FontSize" Value="12"/>
+                            <!--<Setter Property="Foreground" Value="#FF9C1D85"/>-->
+                            <Setter Property="Foreground" Value="{StaticResource PageButton.Foreground}"/>
+                            <Setter Property="Background" Value="{StaticResource PageButton.Background}"/>
+                            <Setter Property="BorderBrush" Value="Transparent"/>
+                            <Setter Property="VerticalContentAlignment" Value="Center"/>
+                            <Setter Property="BorderThickness" Value="1"/>
+                            <Setter Property="Width" Value="30"/>
+                            <Setter Property="Height" Value="30"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsEnabled" Value="false">
+                                    <Setter Property="Opacity" Value="0.5"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+
+                        <Style x:Key="HomePageButtonStyle" BasedOn="{StaticResource PageButtonBaseStyle}" TargetType="Button">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Grid >
+                                            <Ellipse Fill="{TemplateBinding Background}"/>
+                                            <Path Stretch="Fill" Margin="10" Data="M0,1 0,9 1,9 1,1z M1,5 4,10,4,0z" Fill="{TemplateBinding Foreground}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="{StaticResource PageButton.Background.IsMouseOver}"/>
+                                                <Setter Property="BorderThickness" Value="0"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+
+                        <Style x:Key="PrePageButtonStyle" BasedOn="{StaticResource PageButtonBaseStyle}" TargetType="Button">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Grid>
+                                            <Ellipse Fill="{TemplateBinding Background}"/>
+                                            <Path Stretch="Fill" Margin="9,10,11,10" Data="M0,3 6,0 6,6z" Fill="{TemplateBinding Foreground}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="{StaticResource PageButton.Background.IsMouseOver}"/>
+                                                <Setter Property="BorderThickness" Value="0"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+
+                        <Style x:Key="NextPageButtonStyle" BasedOn="{StaticResource PageButtonBaseStyle}" TargetType="Button">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Grid>
+                                            <Ellipse Fill="{TemplateBinding Background}"/>
+                                            <Path Stretch="Fill" Margin="11,10,9,10" Data="M0,0 0,6 6,3z" Fill="{TemplateBinding Foreground}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="{StaticResource PageButton.Background.IsMouseOver}"/>
+                                                <Setter Property="BorderThickness" Value="0"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+
+                        <Style x:Key="LastPageButtonStyle" BasedOn="{StaticResource PageButtonBaseStyle}" TargetType="Button">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Grid>
+                                            <Ellipse Fill="{TemplateBinding Background}"/>
+                                            <Path Stretch="Fill" Margin="10" Data="M0,0 0,10 3,5z M3,1 3,9 4,9 4,1z" Fill="{TemplateBinding Foreground}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="{StaticResource PageButton.Background.IsMouseOver}"/>
+                                                <Setter Property="BorderThickness" Value="0"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+
+                        <Style x:Key="GoButtonStyle" BasedOn="{StaticResource PageButtonBaseStyle}" TargetType="Button">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Grid>
+                                            <Ellipse Fill="{TemplateBinding Background}"/>
+                                            <Path Stretch="Fill" Margin="5,8" Data="M0,3 10,3 10,6 0,6z M10,0 10,9 19,4.5z" Fill="{TemplateBinding Foreground}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="{StaticResource PageButton.Background.IsMouseOver}"/>
+                                                <Setter Property="BorderThickness" Value="0"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+
+                        <Style x:Key="RadioButtonStyle" TargetType="{x:Type RadioButton}">
+                            <Setter Property="FontSize" Value="12"/>
+                            <Setter Property="Foreground" Value="{StaticResource PageButton.Foreground}"/>
+                            <Setter Property="Background" Value="{StaticResource PageButton.Background}"/>
+                            <Setter Property="BorderBrush" Value="Transparent"/>
+                            <Setter Property="VerticalContentAlignment" Value="Center"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="BorderThickness" Value="1"/>
+                            <Setter Property="Width" Value="Auto"/>
+                            <Setter Property="MinWidth" Value="30"/>
+                            <Setter Property="Height" Value="30"/>
+                            <Setter Property="Margin" Value="5,0,0,0"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="RadioButton">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid x:Name="Grid">
+                                                <Ellipse Fill="{TemplateBinding Background}"/>
+                                                <ContentPresenter VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"/>
+                                            </Grid>
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="{StaticResource PageButton.Background.IsMouseOver}"/>
+                                                <Setter Property="BorderThickness" Value="0"/>
+                                            </Trigger>
+                                            <Trigger Property="IsChecked" Value="True">
+                                                <Setter Property="Background" Value="{StaticResource PageButton.Background.IsMouseOver}" />
+                                                <Setter Property="BorderThickness" Value="0" />
+                                            </Trigger>
+                                            <Trigger Property="IsEnabled" Value="False">
+                                                <Setter TargetName="Grid" Property="Opacity" Value="0.5" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+
+                        <DataTemplate x:Key="CenterPageItemTemplate" DataType="{x:Type controls:PageModel}">
+                            <RadioButton x:Name="RadioButton" Margin="5,0,0,0" Style="{StaticResource RadioButtonStyle}" Content="{Binding Index}" 
+                                         GroupName="{Binding Path=Guid, RelativeSource={RelativeSource AncestorType=controls:DataPager,Mode=FindAncestor}}"
+                                         IsChecked="{Binding IsSelected}"/>
+                        </DataTemplate>
+
+                        <Style x:Key="PagerInfoTextBlockStyle" TargetType="TextBlock">
+                            <Setter Property="FontSize" Value="12"/>
+                            <Setter Property="Foreground" Value="{StaticResource PageButton.Foreground}"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+
+                        <Style x:Key="GoTextBoxStyle" TargetType="TextBox">
+                            <Setter Property="FontSize" Value="12"/>
+                            <Setter Property="Foreground" Value="{StaticResource PageButton.Foreground}"/>
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="BorderBrush" Value="{StaticResource TextBox.BorderBrush}"/>
+                            <Setter Property="CaretBrush" Value="{StaticResource TextBox.CaretBrush}"/>
+                            <Setter Property="VerticalContentAlignment" Value="Center"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                            <Setter Property="Width" Value="30"/>
+                            <Setter Property="Height" Value="30"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type TextBox}">
+                                        <Border x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true" >
+                                            <Grid>
+                                                <ScrollViewer x:Name="PART_ContentHost"  Background="{x:Null}" BorderThickness="0" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                            </Grid>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsEnabled" Value="False">
+                                                <Setter Property="Background" Value="Transparent" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+
+                    </ControlTemplate.Resources>
+
+
+                    <StackPanel Orientation="Horizontal" Height="{TemplateBinding Height}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Background="{TemplateBinding Background}">
+
+                        <Button x:Name="PART_HomePage" Style="{StaticResource HomePageButtonStyle}"/>
+                        <Button x:Name="PART_PrePageButton" Style="{StaticResource PrePageButtonStyle}" Margin="5,0,0,0"/>
+
+                        <ScrollViewer x:Name="PART_CenterPageScrollViewer" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Disabled">
+                            <ItemsControl x:Name="PART_CenterPageItemsControl" ItemTemplate="{StaticResource CenterPageItemTemplate}"
+                                          BorderThickness="0" VerticalAlignment="Center" 
+                                          Background="{x:Null}" Width="Auto" 
+                                          ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                                          ScrollViewer.CanContentScroll="True">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Horizontal" IsItemsHost="True"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                            </ItemsControl>
+                        </ScrollViewer>
+                        <Button x:Name="PART_NextPageButton" Style="{StaticResource NextPageButtonStyle}" Margin="5,0"/>
+                        <Button x:Name="PART_LastPage" Style="{StaticResource LastPageButtonStyle}"/>
+                        <TextBlock x:Name="PART_PagerInfo" VerticalAlignment="Center" Margin="10,0,0,0" Style="{StaticResource PagerInfoTextBlockStyle}">
+                            <Run Text="{Binding RelativeSource={RelativeSource AncestorType=controls:DataPager,Mode=FindAncestor},Path=CurrentPageIndex}"/>
+                            <Run Text=" / "/>
+                            <Run Text="{Binding RelativeSource={RelativeSource AncestorType=controls:DataPager,Mode=FindAncestor},Path=PageCount}"/>
+                        </TextBlock>
+                        <TextBlock VerticalAlignment="Center" Margin="10,0" Style="{StaticResource PagerInfoTextBlockStyle}">
+                            <Run Text=" Total: "/>
+                            <Run Text="{Binding TotalCount, RelativeSource={RelativeSource AncestorType=controls:DataPager,Mode=FindAncestor}}"/>
+                        </TextBlock>
+                        <TextBox x:Name="PART_GoTextBox" Style="{StaticResource GoTextBoxStyle}" VerticalContentAlignment="Center" VerticalAlignment="Center"/>
+                        <Button x:Name="PART_GoButton" Style="{StaticResource GoButtonStyle}" Content="Go" Margin="5,0,0,0"/>
+                    </StackPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

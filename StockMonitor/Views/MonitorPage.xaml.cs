@@ -13,16 +13,21 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace StockMonitor
+namespace StockMonitor.Views
 {
     /// <summary>
-    /// MainWindow.xaml 的交互逻辑
+    /// MonitorPage.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MonitorPage : Page
     {
-        public MainWindow()
+        public MonitorPage()
         {
             InitializeComponent();
+        }
+
+        private void DataGrid_Sorting(object sender, DataGridSortingEventArgs e)
+        {
+
         }
     }
 }

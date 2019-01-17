@@ -1,0 +1,16 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Resource.Styles">
+
+    <!--主窗口-->
+    <SolidColorBrush x:Key="MenuNormalBackgroundBrh" Color="#004059" /> 
+    <SolidColorBrush x:Key="MenuCheckedBackgroundBrh" Color="#002D40"/>
+    <SolidColorBrush x:Key="MenuCheckedRectangleBrh" Color="#002D40" />
+    <SolidColorBrush x:Key="MainFrameBackgroundBrh" Color="#002D40" />
+
+    <SolidColorBrush x:Key="RegionBorderBrh" Color="#004059" />
+    <SolidColorBrush x:Key="StatusBarBackgroundBrh" Color="#004059" />
+
+    <FontFamily x:Key="DefaultFont">Microsoft YaHei</FontFamily>
+
+</ResourceDictionary>
