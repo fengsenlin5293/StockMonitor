@@ -571,11 +571,14 @@ namespace StockMonitor.ViewModels
         private bool CheckConfig()
         {
             //检查代理
-            var checkResult = ProxyHelper.CheckProxyUsefull(_configModel.ProxyData.IP, _configModel.ProxyData.Port, 10000);
-            if (!checkResult)
+            if(_configModel.IsUseProxy)
             {
-                Messenger.Default.Send(new StatusBarArgs(true, ResourceHelper.FindKey("StatusBar_ConfigError_ProxyUnavailable")), StatusBarToken.UpdateStatus);
-                return false;
+                var checkResult = ProxyHelper.CheckProxyUsefull(_configModel.ProxyData.IP, _configModel.ProxyData.Port, 10000);
+                if (!checkResult)
+                {
+                    Messenger.Default.Send(new StatusBarArgs(true, ResourceHelper.FindKey("StatusBar_ConfigError_ProxyUnavailable")), StatusBarToken.UpdateStatus);
+                    return false;
+                }
             }
 
             if (!_configModel.IsFromConditionFilter && !_configModel.IsFromLocalFile)
