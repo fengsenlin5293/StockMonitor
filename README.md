@@ -85,7 +85,7 @@
 ![cpu占用](https://upload-images.jianshu.io/upload_images/11337307-d633e2986ab2ffc4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)<br/>
 ![本机处理器](https://upload-images.jianshu.io/upload_images/11337307-7cd3e233dc32508d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)<br/>
 针对CPU占用高的问题，本人尝试过使用<br/>
-```System.Diagnostics.Process.GetCurrentProcess().ProcessorAffinity = (IntPtr)0x0003;```
+```System.Diagnostics.Process.GetCurrentProcess().ProcessorAffinity = (IntPtr)0x0003;```<br/>
 这种方式来指定爬虫线程用哪个cpu，分析线程用哪个cpu，ui线程用哪个cpu。
 结果是，这种方式可以降低cpu占用，但是数据分析处理能力降低许多，影响了时效性。对于实时监控类程序来说时效性尤为重要，因此暂时放弃使用这种方式解决cpu占用问题。
 ## 7.优点
