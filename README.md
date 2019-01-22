@@ -35,7 +35,6 @@
 股票数量/线程|每个数据爬虫线程负责的股票数|100-300 
 每次查询数量|每只股票每次查询的成交记录的数量|20-14400
 查询时间间隔|每一轮查询的时间间隔|大于3000毫秒
-</table>
 <br>
 ![爬虫配置](https://upload-images.jianshu.io/upload_images/11337307-17dfc0bbed8832c4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 ***策略一：大单策略***
