@@ -30,13 +30,8 @@
 ![策略设置](https://upload-images.jianshu.io/upload_images/11337307-aa6f08eaa430a468.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 ### 4.3.高级设置
 ***爬虫配置：*** 包括 *股票数量/线程*、*每次查询数量*、*查询时间间隔* 三个配置项。
-<table>
-    <tr>
-        <th>配置项</th>
-        <th>详细描述</th>
-        <th>备注</th>
-    </tr>
-</table>
+|配置项|详细描述|备注
+
 --|--|--
 股票数量/线程|每个数据爬虫线程负责的股票数|100-300 
 每次查询数量|每只股票每次查询的成交记录的数量|20-14400
