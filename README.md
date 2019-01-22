@@ -20,14 +20,14 @@
 ### 4.1.监控页面
 ![主页](https://upload-images.jianshu.io/upload_images/11337307-23b8432be88eaeed.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 ### 4.2.基本设置
-***代理设置：***如果勾上，软件所有的http请求都将使用这个代理来发起请求。![代理设置](https://upload-images.jianshu.io/upload_images/11337307-9c8e59cfc3fb1d0a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-***监控范围：***可以配置一些条件，筛选想要监控的股票。也可以把自己关注的股票放到文本文件里面导入进来。![监控范围](https://upload-images.jianshu.io/upload_images/11337307-108a7af0f976847e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-***不想监控的股票：***如果有不想监控的股票，可以放到某个文本文件，导入进来。
+***代理设置：*** 如果勾上，软件所有的http请求都将使用这个代理来发起请求。![代理设置](https://upload-images.jianshu.io/upload_images/11337307-9c8e59cfc3fb1d0a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+***监控范围：*** 可以配置一些条件，筛选想要监控的股票。也可以把自己关注的股票放到文本文件里面导入进来。![监控范围](https://upload-images.jianshu.io/upload_images/11337307-108a7af0f976847e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+***不想监控的股票：*** 如果有不想监控的股票，可以放到某个文本文件，导入进来。
 ![不想监控的股票](https://upload-images.jianshu.io/upload_images/11337307-8b30063841623224.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-***策略设置：***选择监控的策略。（目前我就写了两种策略）
+***策略设置：*** 选择监控的策略。（目前我就写了两种策略）
 ![策略设置](https://upload-images.jianshu.io/upload_images/11337307-aa6f08eaa430a468.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 ### 4.3.高级设置
-***爬虫配置：***包括 *股票数量/线程*、*每次查询数量*、*查询时间间隔* 三个配置项。
+***爬虫配置：*** 包括 *股票数量/线程*、*每次查询数量*、*查询时间间隔* 三个配置项。
 配置项|详细描述|备注
 --|--|--
 股票数量/线程|每个数据爬虫线程负责的股票数|100-300 
