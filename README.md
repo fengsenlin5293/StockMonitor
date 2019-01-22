@@ -1,4 +1,4 @@
-## 传送门   [Github源码下载](https://github.com/fengsenlin5293/StockMonitor)
+## 传送门   [简书文章](https://www.jianshu.com/p/1711f1239a38)
 
 ## 1.引言
 正如本文标题所述，这是一款基于股票数据爬虫并且可以自定义策略的实时股票监控程序。此程序是本人业余时间所写，必然存在一些考虑不全面的或者有瑕疵的地方，欢迎大家指出和交流。
@@ -122,4 +122,4 @@ _stockAnalysisService.StartAnalysis(new BigDealAnalysisStrategy(), _cacheBigDeal
 **如果有幸有朋友简单使用了或深入研究了这个软件，有什么疑问或者建议都可以提出来，大家互相交流学习，共同成长。**
 >联系方式：fengsenlin5293@163.com
 
->源码下载：[https://github.com/fengsenlin5293/StockMonitor](https://github.com/fengsenlin5293/StockMonitor)
+>简书文章：[https://www.jianshu.com/p/1711f1239a38](https://www.jianshu.com/p/1711f1239a38)
