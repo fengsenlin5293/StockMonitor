@@ -12,7 +12,7 @@
                     <ControlTemplate.Resources>
                         <SolidColorBrush x:Key="PageButton.Foreground">white</SolidColorBrush>
                         <SolidColorBrush x:Key="PageButton.Background">#4788CB</SolidColorBrush>
-                        <SolidColorBrush x:Key="PageButton.Background.IsMouseOver">#00cc66</SolidColorBrush>
+                        <SolidColorBrush x:Key="PageButton.Background.IsMouseOver" Color="Orange"></SolidColorBrush>
                         <SolidColorBrush x:Key="TextBox.BorderBrush">#004059</SolidColorBrush>
                         <SolidColorBrush x:Key="TextBox.CaretBrush">white</SolidColorBrush>
                         <SolidColorBrush x:Key="RadioButton.Rectangle.Fill">#FF9C1D85</SolidColorBrush>

@@ -221,7 +221,7 @@
 
                                     <TextBlock Grid.Row="0" Grid.Column="4" Text="{DynamicResource Setting_ThreadCount}"/>
                                     <TextBox Grid.Row="0" Grid.Column="5" Text="{Binding BigDealStrategySettingData.ThreadCount,UpdateSourceTrigger=PropertyChanged}" Margin="10 0"/>
-                                    <TextBlock Grid.Row="0" Grid.Column="6" Text="(1~10)"/>
+                                    <TextBlock Grid.Row="0" Grid.Column="6" Text="(1~3)"/>
 
                                     <TextBlock Grid.Row="0" Grid.Column="8" Text="{DynamicResource Setting_ForwardSeconds}"/>
                                     <TextBox Grid.Row="0" Grid.Column="9" Text="{Binding BigDealStrategySettingData.ForwardSeconds,UpdateSourceTrigger=PropertyChanged}" Margin="10 0"/>
@@ -276,7 +276,7 @@
 
                                     <TextBlock Grid.Row="0" Grid.Column="4" Text="{DynamicResource Setting_ThreadCount}"/>
                                     <TextBox Grid.Row="0" Grid.Column="5" Text="{Binding QuickUpStrategySettingData.ThreadCount,UpdateSourceTrigger=PropertyChanged}" Margin="10 0"/>
-                                    <TextBlock Grid.Row="0" Grid.Column="6" Text="(1~10)"/>
+                                    <TextBlock Grid.Row="0" Grid.Column="6" Text="(1~3)"/>
 
                                     <TextBlock Grid.Row="0" Grid.Column="8" Text="{DynamicResource Setting_ForwardSeconds}"/>
                                     <TextBox Grid.Row="0" Grid.Column="9" Text="{Binding QuickUpStrategySettingData.ForwardSeconds,UpdateSourceTrigger=PropertyChanged}" Margin="10 0"/>
@@ -303,7 +303,7 @@
                                     <TextBox Grid.Row="2" Grid.Column="9" Text="{Binding QuickUpStrategySettingData.QuickUpThreshold}" Margin="10 0"/>
                                     <TextBlock Grid.Row="2" Grid.Column="10">
                                         <Run Text="%"/>
-                                        <Run Text="(0.5~100)"/>
+                                        <Run Text="(0.5~10)"/>
                                     </TextBlock>
                                 </Grid>
                             </GroupBox>

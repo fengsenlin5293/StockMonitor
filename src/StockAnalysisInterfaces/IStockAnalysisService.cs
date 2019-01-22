@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace StockAnalysisInterfaces
 {
-    public interface IStockAnalysisService<TAnalysisStrategy, TStockBase> where TAnalysisStrategy : IAnalysisStrategy<TStockBase> where TStockBase : StockBase
+    public interface IStockAnalysisService<TAnalysisStrategy, TStockBase> where TAnalysisStrategy : IAnalysisStrategy<TStockBase> 
+                                                                          where TStockBase : StockBase
     {
         event StockAnalysisResultUpdatedEventHandler<TStockBase> StockAnalysisResultUpdatedEvent;
         event EventHandler<int> RemainderCountUpdatedEvent;

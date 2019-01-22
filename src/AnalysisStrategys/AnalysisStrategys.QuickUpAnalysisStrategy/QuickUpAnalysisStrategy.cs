@@ -361,9 +361,9 @@ namespace AnalysisStrategys.QuickUpAnalysisStrategy
                 throw new StrategyConfigException($"{ResourceHelper.FindKey("Setting_StockMaxCountEachGroup")} must at the range [100-500].");
             }
 
-            if (_configModel.QuickUpStrategyConfigData.ThreadCount < 1 || _configModel.QuickUpStrategyConfigData.ThreadCount > 10)
+            if (_configModel.QuickUpStrategyConfigData.ThreadCount < 1 || _configModel.QuickUpStrategyConfigData.ThreadCount > 3)
             {
-                throw new StrategyConfigException($"{ResourceHelper.FindKey("Setting_ThreadCount")} must at the range [1-10].");
+                throw new StrategyConfigException($"{ResourceHelper.FindKey("Setting_ThreadCount")} must at the range [1-3].");
             }
 
             if (_configModel.QuickUpStrategyConfigData.ForwardSeconds < 10 || _configModel.QuickUpStrategyConfigData.ForwardSeconds > 60 * 5)
@@ -378,12 +378,12 @@ namespace AnalysisStrategys.QuickUpAnalysisStrategy
 
             if (_configModel.QuickUpStrategyConfigData.DealAmountThreshold < 50000)
             {
-                throw new StrategyConfigException($"{ResourceHelper.FindKey("Setting_BigDealSetting_BigDealAmountThreshold")} must bigger than 50000.");
+                throw new StrategyConfigException($"{ResourceHelper.FindKey("Setting_QuickUpSetting_DealAmountThreshold")} must bigger than 50000.");
             }
 
-            if (_configModel.QuickUpStrategyConfigData.QuickUpThreshold < 0.5 || _configModel.QuickUpStrategyConfigData.QuickUpThreshold > 100)
+            if (_configModel.QuickUpStrategyConfigData.QuickUpThreshold < 0.5 || _configModel.QuickUpStrategyConfigData.QuickUpThreshold > 10)
             {
-                throw new StrategyConfigException($"{ResourceHelper.FindKey("Setting_BigDealSetting_BigDealCountThreshold")} must bigger than [0.5-100].");
+                throw new StrategyConfigException($"{ResourceHelper.FindKey("Setting_QuickUpSetting_QuickUpThreshold")} must bigger than [0.5-10].");
             }
         }
 

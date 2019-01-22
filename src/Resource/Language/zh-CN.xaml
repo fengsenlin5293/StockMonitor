@@ -48,7 +48,7 @@
     <sys:String x:Key="Setting_BigDealStrategySettingHeader">大单策略配置</sys:String>
     <sys:String x:Key="Setting_QuickUpStrategySettingHeader">快速上涨策略配置</sys:String>
     <sys:String x:Key="Setting_StockMaxCountEachGroup">每组个股数:</sys:String>
-    <sys:String x:Key="Setting_ThreadCount">分析使用线程数</sys:String>
+    <sys:String x:Key="Setting_ThreadCount">缓存数据处理线程数:</sys:String>
     <sys:String x:Key="Setting_ForwardSeconds">向前截取:</sys:String>
     <sys:String x:Key="Setting_AfterSeconds">向后截取:</sys:String>
     <sys:String x:Key="Setting_BigDealSetting_BigDealAmountThreshold">大单金额:</sys:String>

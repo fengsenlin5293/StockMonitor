@@ -89,7 +89,7 @@ namespace AnalysisStrategys.BigDealAnalysisStrategy
             this._bigDealAmountThreshold = _configModel.BigDealStrategyConfigData.BigDealAmountThreshold;
             this._bigDealCountThreshold = (int)_configModel.BigDealStrategyConfigData.BigDealCountThreshold;
 
-            //使用三个线程来完成大单策略分析
+            //使用三个线程来完成数据分组及缓存处理
             for (int ntask = 1; ntask <= threadCount; ntask++)
             {
                 Task.Factory.StartNew(() =>
@@ -361,9 +361,9 @@ namespace AnalysisStrategys.BigDealAnalysisStrategy
                 throw new StrategyConfigException($"{ResourceHelper.FindKey("Setting_StockMaxCountEachGroup")} must at the range [100-500].");
             }
 
-            if (_configModel.BigDealStrategyConfigData.ThreadCount < 1 || _configModel.BigDealStrategyConfigData.ThreadCount > 10)
+            if (_configModel.BigDealStrategyConfigData.ThreadCount < 1 || _configModel.BigDealStrategyConfigData.ThreadCount > 3)
             {
-                throw new StrategyConfigException($"{ResourceHelper.FindKey("Setting_ThreadCount")} must at the range [1-10].");
+                throw new StrategyConfigException($"{ResourceHelper.FindKey("Setting_ThreadCount")} must at the range [1-3].");
             }
 
             if (_configModel.BigDealStrategyConfigData.ForwardSeconds < 10 || _configModel.BigDealStrategyConfigData.ForwardSeconds > 60 * 5)
