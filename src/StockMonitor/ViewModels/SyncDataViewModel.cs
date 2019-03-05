@@ -243,7 +243,9 @@ namespace StockMonitor.ViewModels
             var response = HttpHelper.CreateGetHttpResponse(url, 6000, new CustomerHeader(), headers, proxy);
             var responseString = HttpHelper.GetResponseString(response);
             var datas = JsonHelper.DeserializeJsonToObject<JObject[]>(responseString);
-            var section = datas[3].SelectToken("next").SelectMany(x => x.SelectToken("next"));
+            //hsbroad
+            var hsbroad = datas.FirstOrDefault(data => data.First.ToString().Contains("hsbroad"));
+            var section = hsbroad.SelectToken("next").SelectMany(x => x.SelectToken("next"));
             var sectionModels = section.Select(x => JsonHelper.DeserializeJsonToObject<SectionModel>(x.ToString())).Where(x => x.Show);
             string preUrl = "http://quote.eastmoney.com";
             foreach (var item in sectionModels)
